@@ -48,16 +48,17 @@ const CoinList = ({ coins, isLoading }) => {
       <div className="coin-list">
         <table className="coin-list__table">
           <TableHead />
-          {isLoading ? (
-            <tbody>
+          {
+            !isLoading && <tbody>{renderCoins()}</tbody>
+          }
+        </table>
+        {isLoading && (
+            <div className="coin-list__skeleton-wrapper">
               {Array.from({ length: coinsPerPage }, (_, index) => (
                 <Skeleton key={index} className="coin-list__skeleton" />
               ))}
-            </tbody>
-          ) : (
-            <tbody>{renderCoins()}</tbody>
+              </div>
           )}
-        </table>
       </div>
       <div className="pagination-wrapper">{renderPagination()}</div>
     </>
