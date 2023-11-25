@@ -7,13 +7,13 @@ const formatNumber = (value) => {
 };
 
 const Coin = ({ coin }) => {
-  const { title_fa, code, image, price } = coin;
+  const { title_fa, code, currency1, price } = coin;
   return (
     <tr className="coin-row">
       <td>
         <div className="coin-details">
-          {image ? (
-            <img alt="coin icon" className="coin-image" src={image} />
+          {currency1?.image ? (
+            <img alt="coin icon" className="coin-image" src={currency1?.image} />
           ) : (
             <div></div>
           )}

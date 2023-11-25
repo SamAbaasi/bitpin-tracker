@@ -69,7 +69,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>List of Cryptocurrencies</h1>
+      <h1>لیست رمزارزها</h1>
       <CoinList coins={markets} isLoading={loading} />
     </div>
   );
