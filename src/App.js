@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
+import CoinList from './components/CoinList';
 
 const API_URL = 'https://api.bitpin.org/v1/mkt/markets/';
 const SOCKET_URL = 'wss://ws.bitpin.org';
 
 const App = () => {
+  const [loading, setLoading] = useState(false);
   const [markets, setMarkets] = useState([]);
   const [socketUrl] = useState(SOCKET_URL);
 
   const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
 
   useEffect(() => {
+    setLoading(true)
     fetchData();
   }, [sendMessage]);
 
@@ -29,6 +32,7 @@ const App = () => {
       .then(response => response.json())
       .then(data => {
         setMarkets(data?.results || []);
+        setLoading(false)
       })
       .catch(error => console.error('Error fetching markets:', error));
   };
@@ -66,26 +70,10 @@ const App = () => {
   return (
     <div>
       <h1>List of Cryptocurrencies</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>نام رمزارز</th>
-            <th>آخرین قیمت</th>
-          </tr>
-        </thead>
-        <tbody>
-          {markets.map(market => (
-            <tr key={market.id}>
-              <td>
-                <td>{market.title_fa}</td>
-              </td>
-              <td>{market.price}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <CoinList coins={markets} isLoading={loading} />
     </div>
   );
 };
 
 export default App;
+
