@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 import CoinList from './components/CoinList';
-
+import './App.css'
 const API_URL = 'https://api.bitpin.org/v1/mkt/markets/';
 const SOCKET_URL = 'wss://ws.bitpin.org';
 
@@ -69,7 +69,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>لیست رمزارزها</h1>
+      <h1 className='header'>لیست رمزارزها</h1>
       <CoinList coins={markets} isLoading={loading} />
     </div>
   );

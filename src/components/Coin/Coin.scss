@@ -10,6 +10,7 @@
   .coin-details {
     display: flex;
     align-items: center;
+    flex-direction: row-reverse;
   }
   
   .coin-image {
@@ -35,7 +36,7 @@
   }
   
   .coin-price {
-    text-align: right;
+    text-align: left;
     padding-top: 1.5rem;
     font-weight: 500;
     font-size: 0.875rem;
